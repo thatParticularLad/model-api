@@ -15,10 +15,6 @@ from utils import clean_text
 app = Flask(__name__)
 
 lstm_text_model = keras.models.load_model("models/kaggle_lstm_text.h5")
-lr_title_model = joblib.load("models/wellfake_lr_title.joblib")
-
-tfidf_vectorizer = pickle.load(open('models/wellfake_lr_title_vectorizer.pickle', 'rb'))
-
 
 def tokenize(data):
   tokenizer = Tokenizer(num_words = 10000)
@@ -38,3 +34,9 @@ def get_text_prediction():
   prediction =  lstm_text_model.predict(tokenize([cleaned]))
   print(str(prediction))
   return jsonify({"prediction": str(prediction)})
+
+
+@app.route("/", methods=["GET"], endpoint='hello')
+def hello():
+  print("Hello, app works")
+
