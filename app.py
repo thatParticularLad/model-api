@@ -30,9 +30,11 @@ def tokenize(data):
 
 @app.route("/lstm-text", methods=["POST"], endpoint='get_text_prediction')
 def get_text_prediction():
-    data = request.json
-    print("Received Input text", data)
-    cleaned = clean_text(data)
-    prediction =  lstm_text_model.predict(tokenize([cleaned]))
-    print(str(prediction))
-    return jsonify({"prediction": str(prediction)})
+  data = request.json
+  print("Received Input text", data)
+  print("Input text length:", len(data))
+  cleaned = clean_text(data)
+  print("Input text length (after cleaning):", len(cleaned))
+  prediction =  lstm_text_model.predict(tokenize([cleaned]))
+  print(str(prediction))
+  return jsonify({"prediction": str(prediction)})
