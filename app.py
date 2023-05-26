@@ -38,5 +38,5 @@ def get_text_prediction():
 
 @app.route("/", methods=["GET"], endpoint='hello')
 def hello():
-  print("Hello, app works")
+  return jsonify("Hello, app works")
 
